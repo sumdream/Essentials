@@ -225,9 +225,9 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
         permissionsHandler = new PermissionsHandler(this, false);
         Economy.setEss(this);
         confList = new ArrayList<>();
-        jails = new Jails(this);
+        //jails = new Jails(this);
         registerListeners(server.getPluginManager());
-        kits = new Kits(this);
+        //kits = new Kits(this);
     }
 
     @Override
@@ -517,9 +517,6 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
 
         final EssentialsEntityListener entityListener = new EssentialsEntityListener(this);
         pm.registerEvents(entityListener, this);
-
-        final EssentialsWorldListener worldListener = new EssentialsWorldListener(this);
-        pm.registerEvents(worldListener, this);
 
         final EssentialsServerListener serverListener = new EssentialsServerListener(this);
         pm.registerEvents(serverListener, this);
@@ -1341,21 +1338,4 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
         }
     }
 
-    private static class EssentialsWorldListener implements Listener, Runnable {
-        private transient final IEssentials ess;
-
-        EssentialsWorldListener(final IEssentials ess) {
-            this.ess = ess;
-        }
-
-        @EventHandler(priority = EventPriority.LOW)
-        public void onWorldLoad(final WorldLoadEvent event) {
-            PermissionsDefaults.registerBackDefaultFor(event.getWorld());
-        }
-
-        @Override
-        public void run() {
-            ess.reload();
-        }
-    }
 }

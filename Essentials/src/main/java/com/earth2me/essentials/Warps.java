@@ -74,7 +74,8 @@ public class Warps implements IConf, net.ess3.api.IWarps {
 
     @Override
     public void setWarp(final IUser user, final String name, final Location loc) throws Exception {
-        final String filename = StringUtil.sanitizeFileName(name);
+       // final String filename = StringUtil.sanitizeFileName(name);
+        final String filename = StringUtil.warpFileName(name);
         EssentialsConfiguration conf = warpPoints.get(new StringIgnoreCase(name));
         if (conf == null) {
             final File confFile = new File(warpsFolder, filename + ".yml");
